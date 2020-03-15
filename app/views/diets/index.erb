@@ -1,0 +1,42 @@
+<div class="card">
+<div class="card-header">
+  <h3 class="card-title">Responsive Hover Table</h3>
+
+  <div class="card-tools">
+    <div class="input-group input-group-sm" style="width: 150px;">
+      <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+      <div class="input-group-append">
+        <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /.card-header -->
+<div class="card-body table-responsive p-0">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Start</th>
+        <th>Finish</th>
+        <th>Show</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @diets.each do |diet| %>
+      <tr>
+        <td><%=diet.id%></td>
+        <td><%=diet.title%></td>
+        <td><%=diet.description%></td>
+        <td><%=diet.start%></td>
+        <td><%=diet.finish%></td>
+        <td><a href="/diet/<%=diet.id%>"><i class="fas fa-eye"></i></a></td>
+      <%end%>
+    </tbody>
+  </table>
+</div>
+</div>
+</div>

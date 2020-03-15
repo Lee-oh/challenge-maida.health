@@ -1,0 +1,35 @@
+<div class="card card-primary">
+  <div class="card-header">
+  <h3 class="card-title">Diet</h3>
+  </div>
+  <div class="card-body">
+  <form action="/point" method="post">
+  <input type="hidden" name="diet_id" value="<%=@diet.id%>">
+  <div class="form-group">
+  <label>Title</label>
+  <input type="text" class="form-control" placeholder="Title ..." name="title">
+  </div>
+  <div class="form-group">
+  <label>Date:</label>
+  <div class="input-group">
+  <div class="input-group-prepend">
+  <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+  </div>
+  <input type="text" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask name="schedule">
+  </div>
+  </div> 
+
+  <div class="form-group">
+  <label>Weight</label>
+  <input type="number" class="form-control" placeholder="Weight ..." name="weight">
+  </div>
+
+  <div class="form-group">
+  <div class="col-lg-2">
+  <button type="submit" class="btn btn-block btn-primary">Add</button>
+  </div>
+  </div>
+  </form>
+</div>
+</div>
+</div>

@@ -1,0 +1,52 @@
+  <div class="card">
+  <div class="card-header">
+  <h5 class="card-title m-0">Informations</h5>
+  </div>
+  <div class="card-body">
+  <a href="/point_new/<%=@diet.id%>" class="btn btn-primary">Add Point</a>
+  </div>
+  </div>
+
+  <div class="card">
+  <div class="card-header">
+    <h5 class="card-title m-0">Informations</h5>
+  </div>
+  <div class="card-body">
+    <h6 class="card-title"><%=@diet.title%></h6>
+    <p class="card-text"><%=@diet.description%></p>
+    <p class="card-text"><%=@diet.schedule%></p>
+    <p class="card-text"><%=@diet.start%></p>
+    <p class="card-text"><%=@diet.finish%></p>
+    <p class="card-text"><%=@diet.period%></p>
+    <p class="card-text"><%=@diet.height%></p>
+    <p class="card-text"><%=@diet.weight%></p>
+    <p class="card-text"><%=@diet.target_weight%></p>
+    <a href="/diet_edit/<%=@diet.id%>" class="btn btn-primary">Edit</a>
+    <a href="/diet_delete/<%=@diet.id%>" class="btn btn-primary">Delete</a>
+    <div class="card-body table-responsive p-0">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Weight</th>
+        <th>Schedule</th>
+        <th>Show</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @points.each do |point| %>
+      <tr>
+        <td><%=point.id%></td>
+        <td><%=point.title%></td>
+        <td><%=point.schedule%></td>
+        <td><%=point.weight%></td>
+        <td><a href="/point/<%=point.id%>"><i class="fas fa-eye"></i></a></td>
+      <%end%>
+    </tbody>
+  </table>
+</div>
+</div>
+  </div>
+  </div>
+  </div>

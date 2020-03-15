@@ -1,0 +1,81 @@
+<div class="card card-primary">
+  <div class="card-header">
+  <h3 class="card-title">Diet</h3>
+  </div>
+  <div class="card-body">
+  <form action="/diet" method="post">
+  <div class="form-group">
+  <label>Title</label>
+  <input type="text" class="form-control" placeholder="Title ..." name="title">
+  </div>
+  <div class="form-group">
+  <label>Description</label>
+  <textarea class="form-control" rows="3" placeholder="Description ..." name="description"></textarea>
+  </div>
+  <div class="form-group">
+  <label>Schedule</label>
+  <input type="text" class="form-control" placeholder="Schedule ..." name="schedule">
+  </div>
+
+
+<div class="form-group">
+<label>Date Start:</label>
+<div class="input-group">
+<div class="input-group-prepend">
+<span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+</div>
+<input type="text" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask name="start">
+</div>
+</div>
+
+
+<div class="form-group">
+<label>Date Finish:</label>
+<div class="input-group">
+<div class="input-group-prepend">
+<span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+</div>
+<input type="text" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask name="finish">
+</div>
+</div>
+
+
+
+
+
+  <div class="form-group">
+  <div class="input-group">
+  <label>Period</label>
+  <select class="form-control select2" style="width: 100%;" name="period">
+  <option selected="selected">Breakfast</option>
+  <option>Snack</option>
+  <option>Lunch</option>
+  <option>Dinner</option>
+  </select>
+  </div>
+  </div>
+
+
+  <div class="form-group">
+  <label>Height</label>
+  <input type="number" class="form-control" placeholder="Height ..." name="height">
+  </div>
+  <div class="form-group">
+  <label>Weight</label>
+  <input type="number" class="form-control" placeholder="Weight ..." name="weight">
+  </div>
+  <div class="form-group">
+  <label>Target Weight</label>
+  <input type="number" class="form-control" placeholder="Weight Target ..." name="target_weight">
+  </div>
+
+
+
+  <div class="form-group">
+  <div class="col-lg-2">
+  <button type="submit" class="btn btn-block btn-primary">Add</button>
+  </div>
+  </div>
+  </form>
+</div>
+</div>

@@ -1,0 +1,13 @@
+<div class="card">
+<div class="card-header">
+  <h5 class="card-title m-0">Informations</h5>
+</div>
+<div class="card-body">
+  <h6 class="card-title"><%=@point.title%></h6>
+  <p class="card-text"><%=@point.schedule%></p>
+  <p class="card-text"><%=@point.weight%></p>
+  <a href="/point_edit/<%=@point.id%>" class="btn btn-primary">Edit</a>
+  <a href="/point_delete/<%=@point.id%>" class="btn btn-primary">Delete</a>
+</div>
+</div>
+</div>
