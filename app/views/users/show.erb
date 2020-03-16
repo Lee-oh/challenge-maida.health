@@ -1,12 +1,11 @@
 
-  <div class="card">
+  <div class="card card-primary">
     <div class="card-header">
       <h5 class="card-title m-0">Informations</h5>
     </div>
     <div class="card-body">
-      <h6 class="card-title"><%=@user.username%></h6>
-
-      <p class="card-text"><%=@user.email%></p>
+      <h6 class="card-title">User: <%=@user.username%></h6>
+      <p class="card-text">E-mail: <%=@user.email%></p>
       <a href="/user_edit/<%=@user.id%>" class="btn btn-primary">Edit</a>
       <a href="/user_delete/<%=@user.id%>" class="btn btn-primary">Delete</a>
     </div>

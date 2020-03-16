@@ -1,11 +1,11 @@
-<div class="card">
+<div class="card card-primary">
     <div class="card-header">
       <h5 class="card-title m-0">Delete</h5>
     </div>
     <div class="card-body">
-      <h6 class="card-title">Special title treatment</h6>
+      <h6 class="card-title"><%=@user.username%></h6>
 
-      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+      <p class="card-text">Do you really want to delete? it will be permanent! If not click <a href="/user/<%=@user.id%>" class="card-link">Back</a></p>
       <form action="/user/<%=@user.id%>" method="post">
       <input type="hidden" name="_method" value="delete">
       <div class="col-lg-2">

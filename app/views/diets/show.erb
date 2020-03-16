@@ -16,18 +16,12 @@ $(function () {
   var $visitorsChart = $('#visitors-chart')
   var visitorsChart  = new Chart($visitorsChart, {
     data   : {
-      labels  : ['<%=@diet.start%>',
-      <% @points.each do |point| %>
-        '<%=point.schedule%>',
-       <%end%>
-       '<%=@diet.finish%>'],
+      labels  : ['Date Start: <%=@diet.start%>',<% @points.each do |point| %>
+        '<%=point.schedule%>',<%end%>'Date Finish: <%=@diet.finish%>'],
       datasets: [{
         type                : 'line',
-        data                : ['<%=@diet.weight%>',
-        <% @points.each do |point| %>
-         '<%=point.weight%>',
-        <%end%>
-         '<%=@diet.target_weight%>'],
+        data                : ['<%=@diet.weight%>',<% @points.each do |point| %>
+        '<%=point.weight%>',<%end%>'<%=@diet.target_weight%>'],
         backgroundColor     : 'transparent',
         borderColor         : '#007bff',
         pointBorderColor    : '#007bff',
@@ -77,67 +71,74 @@ $(function () {
 })
 </script>
 
-  <div class="card">
-  <div class="card-header">
-  <h5 class="card-title m-0"><%=@diet.title%></h5>
-  </div>
-  <div class="card-body">
-  <div class="card">
-  <div class="card-header border-0">
+<div class="card card-primary">
+    <div class="card-header border-0">
     <div class="d-flex justify-content-between">
       <h3 class="card-title">Evolution of Diet</h3>
-      <a href="javascript:void(0);">View Report</a>
     </div>
-  </div>
+    </div>
   <div class="card-body">
     <div class="d-flex">
       <p class="d-flex flex-column">
         <span>Weight Over Time</span>
       </p>
       <p class="ml-auto d-flex flex-column text-right">
+      <%sum=0%>
+      <% @points.each do |point| %>
+        <% if point.weight < @diet.weight %>
         <span class="text-success">
-          <i class="fas fa-arrow-up"></i> 12.5%
+          <%percent = point.weight  * 100 %>
+          <%result = (percent/@diet.target_weight)-100%>
+          <span class="text-muted">You already reached the goal in <%=point.schedule%> whit <%=point.weight%> kg </span><i class="fas fa-arrow-up"></i> <%=100-result.round(0)%> % progress
         </span>
-        <span class="text-muted">Since last week</span>
+        <%end%>
+        <%end%>
+        
+
       </p>
     </div>
-    <!-- /.d-flex -->
-
     <div class="position-relative mb-4">
       <canvas id="visitors-chart" height="200"></canvas>
     </div>
-
     <div class="d-flex flex-row justify-content-end">
       <span class="mr-2">
-        <i class="fas fa-square text-primary"></i> This Week
+        <i class="fas fa-square text-primary"></i> Time Line
       </span>
     </div>
+    <a href="/point_new/<%=@diet.id%>" class="btn btn-primary">Add Point</a>
+  </div>
+  </div>
+  <br>
+</div>
+</div>
+
+
+<div class="card card-primary collapsed-card">
+  <div class="card-header">
+  <h3 class="card-title">More options</h3>
+  <div class="card-tools">
+    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+    </button>
+  </div>
+  </div>
+  <div class="card-body">
+  <p class="card-text">Description: <%=@diet.description%></p>
+  <p class="card-text">Schedule: <%=@diet.schedule%></p>
+  <p class="card-text">Period: <%=@diet.period%></p>
+  <p class="card-text">
+  currently weighing <%=@diet.height%> cm whit <%=@diet.weight%> kg aiming to reach weight <%=@diet.target_weight%> kg</p>
+  <a href="/diet_edit/<%=@diet.id%>" class="btn btn-primary">Edit</a>
+  <a href="/diet_delete/<%=@diet.id%>" class="btn btn-primary">Delete</a>
   </div>
 </div>
 
 
-  <br>
-  <a href="/point_new/<%=@diet.id%>" class="btn btn-primary">Add Point</a>
-  </div>
-  </div>
 
-<div class="card">
+<div class="card card-primary">
+  <div class="card-body table-responsive p-0">
   <div class="card-header">
-    <h5 class="card-title m-0">Informations</h5>
+  <h3 class="card-title">Point Informations</h3>
   </div>
-  <div class="card-body">
-    <h6 class="card-title"><%=@diet.title%></h6>
-    <p class="card-text"><%=@diet.description%></p>
-    <p class="card-text"><%=@diet.schedule%></p>
-    <p class="card-text"><%=@diet.start%></p>
-    <p class="card-text"><%=@diet.finish%></p>
-    <p class="card-text"><%=@diet.period%></p>
-    <p class="card-text"><%=@diet.height%></p>
-    <p class="card-text"><%=@diet.weight%></p>
-    <p class="card-text"><%=@diet.target_weight%></p>
-    <a href="/diet_edit/<%=@diet.id%>" class="btn btn-primary">Edit</a>
-    <a href="/diet_delete/<%=@diet.id%>" class="btn btn-primary">Delete</a>
-    <div class="card-body table-responsive p-0">
   <table class="table table-hover">
     <thead>
       <tr>
@@ -159,7 +160,4 @@ $(function () {
       <%end%>
     </tbody>
   </table>
-</div>
-</div>
-</div>
-</div>
+  </div>
