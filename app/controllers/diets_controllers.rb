@@ -29,6 +29,7 @@ post '/diet' do
 end
 put '/diet/:id' do
 	@diet = DietService::Query.new.update(params[:id],params[:title],params[:description], params[:schedule],params[:start], params[:finish], params[:period], params[:height], params[:weight], params[:target_weight])
+	@points = PointService::Query.new.get_all(@diet.id)
 	erb :'diets/show', layout: true
 end
 delete '/diet/:id' do

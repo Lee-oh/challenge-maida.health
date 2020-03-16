@@ -1,7 +1,5 @@
 class UsersController < ApplicationController
-get '/stats' do
-    erb :'users/stats', layout: true
-end
+    
 get '/user_edit/:id' do
     if params[:id].to_s == session[:user_id].to_s
         @user = UserService::Query.new.show(params[:id])
@@ -22,9 +20,12 @@ get '/login' do
     erb :'users/login', layout: true
 end
 post '/login' do
-    session[:user_id] = UserService::Query.new.login(params[:username].strip,params[:password].strip)
+    if session[:user_id] = UserService::Query.new.login(params[:username].strip,params[:password].strip)
     @user = UserService::Query.new.show(session[:user_id])
     erb :'users/show', layout: true
+    else
+    redirect to('/')
+    end
 end
 get '/signup' do
     erb :'users/new', layout: true
@@ -32,6 +33,13 @@ end
 get '/logout' do
     session[:user_id] = nil
     erb :index, layout: true
+end
+get '/user' do
+    if @user = UserService::Query.new.show(session[:user_id])
+    erb :'users/show', layout: true  
+    else
+    redirect to('/login')
+    end
 end
 get '/user/:id' do
     if params[:id].to_s == session[:user_id].to_s
