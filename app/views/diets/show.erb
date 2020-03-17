@@ -89,7 +89,7 @@ $(function () {
         <span class="text-success">
           <%percent = point.weight  * 100 %>
           <%result = (percent/@diet.target_weight)-100%>
-          <span class="text-muted">You already reached the goal in <%=point.schedule%> whit <%=point.weight%> kg </span><i class="fas fa-arrow-up"></i> <%=100-result.round(0)%> % progress
+          <span class="text-muted"><%=point.title%>  you already reached the goal in <%=point.schedule%> whit <%=point.weight%> kg </span><i class="fas fa-arrow-up"></i> <%=100-result.round(0)%> % progress
         </span>
         <%end%>
         <%end%>
@@ -113,20 +113,19 @@ $(function () {
 </div>
 
 
-<div class="card card-primary collapsed-card">
+<div class="card card-primary">
   <div class="card-header">
-  <h3 class="card-title">More options</h3>
-  <div class="card-tools">
-    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
-    </button>
-  </div>
+    <h3 class="card-title">More options</h3>
+      <div class="card-tools">
+        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+        </button>
+      </div>
   </div>
   <div class="card-body">
   <p class="card-text">Description: <%=@diet.description%></p>
   <p class="card-text">Schedule: <%=@diet.schedule%></p>
   <p class="card-text">Period: <%=@diet.period%></p>
-  <p class="card-text">
-  currently weighing <%=@diet.height%> cm whit <%=@diet.weight%> kg aiming to reach weight <%=@diet.target_weight%> kg</p>
+  <p class="card-text">currently weighing <%=@diet.height%> cm whit <%=@diet.weight%> kg aiming to reach weight <%=@diet.target_weight%> kg</p>
   <a href="/diet_edit/<%=@diet.id%>" class="btn btn-primary">Edit</a>
   <a href="/diet_delete/<%=@diet.id%>" class="btn btn-primary">Delete</a>
   </div>
@@ -135,10 +134,16 @@ $(function () {
 
 
 <div class="card card-primary">
-  <div class="card-body table-responsive p-0">
-  <div class="card-header">
-  <h3 class="card-title">Point Informations</h3>
+<div class="card-header">
+  <h3 class="card-title">List Points</h3>
+
+  <div class="card-tools">
+    <div class="input-group input-group-sm" style="width: 150px;">
+    </div>
   </div>
+</div>
+<!-- /.card-header -->
+<div class="card-body table-responsive p-0">
   <table class="table table-hover">
     <thead>
       <tr>
@@ -161,3 +166,5 @@ $(function () {
     </tbody>
   </table>
   </div>
+</div>
+</div>

@@ -5,7 +5,11 @@ module UserService
         def login(username,password)
             begin
                 @user = User.find_by(username: username.strip, password: password.strip)
-                return @user.id 
+                if @user
+                    return @user.id
+                else
+                    return false
+                end
             rescue Exception => e
                 return false
             end
@@ -13,8 +17,11 @@ module UserService
         def create(username,email,password)
             begin
                 @user = User.new(username: username.strip, email: email.strip, password: password.strip)
-                @user.save
-                return @user
+                if @user.save
+                    return @user
+                else
+                    return false
+                end
             rescue Exception => e
                 return false
             end
