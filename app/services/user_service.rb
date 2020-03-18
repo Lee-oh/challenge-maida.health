@@ -17,13 +17,14 @@ module UserService
         def create(username,email,password)
             begin
                 @user = User.new(username: username.strip, email: email.strip, password: password.strip)
-                if @user.save
+                @user.save
+                if @user
                     return @user
                 else
-                    return false
+                    return nil
                 end
             rescue Exception => e
-                return false
+                return nil
             end
         end
         def show(id)

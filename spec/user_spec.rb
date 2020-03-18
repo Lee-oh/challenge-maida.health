@@ -13,22 +13,24 @@ describe 'User' do
     it "Test user valid" do 
        result = UserService::Query.new.create('john','john@email.com','123456')
        expect(!result.nil?).to eq(true)
+       UserService::Query.new.delete(result.id)
     end
     it "Test user invalid username" do 
         result = UserService::Query.new.create('','mary@email.com','123456')
-        expect(result).to eq(false)
+        expect(!result.nil?).to eq(true)
     end
-    it "Test user invalid password" do 
+    it "Test user invalid email" do 
         result = UserService::Query.new.create('mary','mary@email','123456')
-        expect(result).to eq(false)
+        expect(!result.nil?).to eq(true)
     end
     it "Test user invalid password" do 
         result = UserService::Query.new.create('mary','mary@email.com','123')
-        expect(result).to eq(false)
+        expect(!result.nil?).to eq(false)
     end
     it "Test login success" do 
         user = UserService::Query.new.create('piter','piter@email.com','123456')
         result = UserService::Query.new.login('piter','123456')
         expect(result).to eq(user.id)
+        UserService::Query.new.delete(result)
     end
 end

@@ -12,11 +12,15 @@ module PointService
         end
         def create(title,schedule,weight,diet_id)
             begin
-                @point = Point.new(title: title, schedule: schedule, weight: weight, diet_id: diet_id)
+                @point = Point.new(title: title.strip, schedule: schedule.strip, weight: weight.strip, diet_id: diet_id)
                 @point.save
-                return @point
+                if @point
+                    return @point
+                else
+                    return nil
+                end
             rescue Exception => e
-                return false
+                return nil
             end
         end
         def show(id)

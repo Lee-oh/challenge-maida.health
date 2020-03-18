@@ -12,11 +12,15 @@ module DietService
         end
         def create(title,description,schedule,start,finish,period,height,weight,target_weight,user_id)
             begin
-                @diet = Diet.new(title: title, description: description, schedule: schedule, start: start, finish: finish, period: period,height: height, weight: weight, target_weight: target_weight, user_id: user_id)
+                @diet = Diet.new(title: title.strip, description: description.strip, schedule: schedule.strip, start: start.strip, finish: finish.strip, period: period.strip, height: height.strip, weight: weight.strip, target_weight: target_weight.strip, user_id: user_id)
                 @diet.save
-                return @diet
+                if @diet
+                    return @diet
+                else
+                    return nil
+                end
             rescue Exception => e
-                return false
+                return nil
             end
         end
         def show(id)

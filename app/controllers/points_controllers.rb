@@ -20,8 +20,12 @@ get '/point/:id' do
 end 
 post '/point' do
 	@point = PointService::Query.new.create(params[:title],params[:schedule],params[:weight],params[:diet_id])
-	@point = PointService::Query.new.show(@point.id)
-	erb :'points/show', layout: true
+	if !@point.nil?
+		@point = PointService::Query.new.show(@point.id)
+		erb :'points/show', layout: true
+	else
+		erb :error, layout: true
+	end
 end
 put '/point/:id' do
 	@point = PointService::Query.new.update(params[:id],params[:title], params[:schedule], params[:weight])
@@ -29,6 +33,6 @@ put '/point/:id' do
 end
 delete '/point/:id' do
 	@point = PointService::Query.new.delete(params[:id])
-	redirect to("/user/#{session[:user_id]}")
+	redirect to("/diet")
 end
 end

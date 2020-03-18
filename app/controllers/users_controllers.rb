@@ -50,7 +50,8 @@ get '/user/:id' do
     end
 end
 post '/user' do
-    if @user = UserService::Query.new.create(params[:username],params[:email].strip,params[:password].strip)
+    @user = UserService::Query.new.create(params[:username],params[:email].strip,params[:password].strip)
+    if !@user.nil?
         session[:user_id] = @user.id
         erb :'users/show', layout: true
     else

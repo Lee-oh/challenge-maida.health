@@ -24,8 +24,11 @@ get '/diet/:id' do
 end
 post '/diet' do
 	@diet = DietService::Query.new.create(params[:title],params[:description], params[:schedule],params[:start], params[:finish], params[:period], params[:height], params[:weight], params[:target_weight],session[:user_id])
-	redirect to("/diet/#{@diet.id}")	
-	erb :'diets/show', layout: true
+	if !@diet.nil?	
+		redirect to("/diet/#{@diet.id}")
+	else
+		erb :error, layout: true  
+	end
 end
 put '/diet/:id' do
 	@diet = DietService::Query.new.update(params[:id],params[:title],params[:description], params[:schedule],params[:start], params[:finish], params[:period], params[:height], params[:weight], params[:target_weight])
@@ -34,6 +37,6 @@ put '/diet/:id' do
 end
 delete '/diet/:id' do
 	@diet = DietService::Query.new.delete(params[:id])
-	redirect to('/')
+	redirect to("/diet")
 end
 end
